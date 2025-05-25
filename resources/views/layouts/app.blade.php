@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Boilerplate</title>
+    <title>Sistem Manajemen Perpustakaan</title>
     <meta charset="utf-8" />
     <meta name="description" content="Boilerplate with metronic" />
     <meta name="keywords" content="boiler, plate, boilerplate" />

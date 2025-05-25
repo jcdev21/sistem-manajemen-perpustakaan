@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User as ModelsUser;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -17,18 +18,12 @@ class User extends Controller
         return view('pages.user.index');
     }
 
-    public function dataTable()
+    private function dataTable()
     {
-        $builder = ModelsUser::query();
+        $builder = ModelsUser::query()->orderBy('id', 'desc');
         return DataTables::of($builder)
             ->addIndexColumn()
             ->make(true);
-    }
-
-    public function clientside()
-    {
-        $users = ModelsUser::all();
-        return view('pages.user.clientside', ['users' => $users]);
     }
 
     public function create()
@@ -36,8 +31,13 @@ class User extends Controller
         return view('pages.user.create');
     }
 
-    public function edit(ModelsUser $user)
+    public function store(CreateUserRequest $request) 
     {
-        dd($user);
+        try {
+            ModelsUser::create($request->validated());
+            return redirect()->route('pengguna.index')->with('success', 'Pengguna berhasil ditambahkan.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Gagal menambahkan pengguna: ' . $e->getMessage()]);
+        }
     }
 }

@@ -1,8 +1,7 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-        <a href="#">
-            <img alt="Logo" src="{{ asset('assets/media/logos/default-dark.svg') }}" class="h-25px app-sidebar-logo-default" />
-            <img alt="Logo" src="{{ asset('assets/media/logos/default-small.svg') }}" class="h-20px app-sidebar-logo-minimize" />
+        <a href="#{{ route('dashboard') }}">
+            Sistem Manajemen Perpustakaan
         </a>
         <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="app-sidebar-minimize">
             <span class="svg-icon svg-icon-2 rotate-180">
@@ -32,7 +31,22 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{Route::is('user') || Route::is('user.clientside') ? 'here show' : ''}}">
+                <div class="menu-item">
+                    <a class="menu-link {{Route::is('pengguna.*') ? 'active' : ''}}" href="{{ route('pengguna.index') }}">
+                        <span class="menu-icon">
+                            <span class="svg-icon svg-icon-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
+                                    <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor" />
+                                    <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor" />
+                                    <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor" />
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="menu-title">Pengguna</span>
+                    </a>
+                </div>
+                {{-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{Route::is('user') || Route::is('user.clientside') ? 'here show' : ''}}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -57,17 +71,9 @@
                                     <span class="menu-title">List Server Side</span>
                                 </a>
                             </div>
-                            <div class="menu-item">
-                                <a class="menu-link {{Route::is('user.clientside') ? 'active' : ''}}" href="{{ route('user.clientside') }}">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">List Client Side</span>
-                                </a>
-                            </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!--end::Menu-->
             </div>
             <!--end::Menu wrapper-->

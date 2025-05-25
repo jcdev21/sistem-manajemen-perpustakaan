@@ -16,20 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    dd('hey');
+Route::get('/', [Dashboard::class, 'index'])->name('dashboard');
+
+Route::controller(User::class)->prefix('pengguna')->group(function () {
+    Route::get('/', [User::class, 'index'])->name('pengguna.index');
+    Route::get('/create', [User::class, 'create'])->name('pengguna.create');
+    Route::post('/store', [User::class, 'store'])->name('pengguna.store');
 });
-
-Auth::routes([
-    'register' => false,
-    'reset' => false,
-    'verify' => false,
-    'confirm' => false
-]);
-
-Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
-
-Route::get('/user', [User::class, 'index'])->name('user');
-Route::get('/user-clientside', [User::class, 'clientside'])->name('user.clientside');
-Route::get('/user/create', [User::class, 'create'])->name('user.create');
-Route::get('/user/{user}/edit', [User::class, 'edit'])->name('user.edit');
