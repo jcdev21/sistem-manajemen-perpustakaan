@@ -12,4 +12,6 @@ class Peminjaman extends Model
     protected $table = 'peminjaman';
 
     protected $guarded = [];
+
+    public $timestamps = false;
 }

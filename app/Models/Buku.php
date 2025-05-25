@@ -12,4 +12,6 @@ class Buku extends Model
     protected $table = 'buku';
 
     protected $guarded = [];
+
+    public $timestamps = false;
 }

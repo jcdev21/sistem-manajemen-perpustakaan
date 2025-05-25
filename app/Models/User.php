@@ -12,4 +12,6 @@ class User extends Model
     protected $table = 'pengguna';
 
     protected $guarded = [];
+
+    public $timestamps = false;
 }

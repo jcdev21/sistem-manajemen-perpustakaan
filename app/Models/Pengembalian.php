@@ -12,4 +12,6 @@ class Pengembalian extends Model
     protected $table = 'pengembalian';
 
     protected $guarded = [];
+
+    public $timestamps = false;
 }
