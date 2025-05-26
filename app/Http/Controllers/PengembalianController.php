@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePengembalianRequest;
+use App\Http\Requests\UpdatePengembalianRequest;
 use App\Models\Buku;
 use App\Models\Peminjaman;
 use App\Models\Pengembalian;
@@ -92,5 +93,28 @@ class PengembalianController extends Controller
         }
 
         return 0; // Tidak ada denda jika dikembalikan tepat waktu
+    }
+
+    public function show(Pengembalian $pengembalian)
+    {
+        return view('pages.pengembalian.detail', compact('pengembalian'));
+    }
+
+    public function edit(Pengembalian $pengembalian)
+    {
+        return view('pages.pengembalian.edit', compact('pengembalian'));
+    }
+
+    public function update(UpdatePengembalianRequest $request, Pengembalian $pengembalian)
+    {
+        try {
+            $request_data = $request->validated();
+            $pengembalian->tanggal_pengembalian = $request_data['tanggal_pengembalian'];
+            $pengembalian->denda = $this->calculateDenda($pengembalian->peminjaman->tanggal_kembali, $request_data['tanggal_pengembalian']);
+            $pengembalian->update();
+            return redirect()->route('pengembalian.index')->with('success', 'Data pengembalian berhasil diperbarui.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui data pengembalian: ' . $e->getMessage());
+        }
     }
 }

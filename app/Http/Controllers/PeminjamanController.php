@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePeminjamanRequest;
+use App\Http\Requests\UpdatePeminjamanRequest;
 use App\Models\Buku;
 use App\Models\Peminjaman;
 use App\Models\User;
@@ -37,6 +38,7 @@ class PeminjamanController extends Controller
                 'tanggal_kembali' => $item->tanggal_kembali ? Carbon::parse($item->tanggal_kembali)->translatedFormat('d F Y') : '',
                 'status' => $item->status,
                 'dikembalikan' => $item->pengembalian ? true : false,
+                'id_pengembalian' => $item->pengembalian ? $item->pengembalian->id : null,
             ];
         });
 
@@ -57,7 +59,7 @@ class PeminjamanController extends Controller
         DB::beginTransaction();
         try {
             $request_data = $request->validated();
-            
+
             $peminjaman = Peminjaman::create([
                 'id_buku' => (int) $request_data['buku'],
                 'id_pengguna' => (int) $request_data['peminjam'],
@@ -76,6 +78,21 @@ class PeminjamanController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan data peminjaman: ' . $e->getMessage());
+        }
+    }
+
+    public function edit(Peminjaman $peminjaman)
+    {
+        return view('pages.peminjaman.edit', compact('peminjaman'));
+    }
+
+    public function update(UpdatePeminjamanRequest $request, Peminjaman $peminjaman)
+    {
+        try {
+            $peminjaman->update($request->validated());
+            return redirect()->route('peminjaman.index')->with('success', 'Data peminjaman berhasil diperbarui.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat memperbarui data peminjaman: ' . $e->getMessage());
         }
     }
 }

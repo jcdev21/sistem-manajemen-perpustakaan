@@ -27,15 +27,5 @@ Route::controller(UserController::class)->prefix('pengguna')->group(function () 
 });
 
 Route::resource('buku', BukuController::class);
-
-Route::controller(PeminjamanController::class)->prefix('peminjaman')->group(function () {
-    Route::get('/', [PeminjamanController::class, 'index'])->name('peminjaman.index');
-    Route::get('/create', [PeminjamanController::class, 'create'])->name('peminjaman.create');
-    Route::post('/store', [PeminjamanController::class, 'store'])->name('peminjaman.store');
-});
-
-Route::controller(PengembalianController::class)->prefix('pengembalian')->group(function () {
-    Route::get('/', [PengembalianController::class, 'index'])->name('pengembalian.index');
-    Route::get('/create', [PengembalianController::class, 'create'])->name('pengembalian.create');
-    Route::post('/store', [PengembalianController::class, 'store'])->name('pengembalian.store');
-});
+Route::resource('peminjaman', PeminjamanController::class);
+Route::resource('pengembalian', PengembalianController::class);

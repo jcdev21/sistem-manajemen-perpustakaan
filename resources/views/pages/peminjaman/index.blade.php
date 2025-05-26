@@ -117,7 +117,8 @@
                         orderable: false,
                         className: 'text-end',
                         render: function (data, type, row) {
-                            let editRoute = "{{ route('buku.edit', ':id') }}".replace(':id', row.id);
+                            let editRoute = "{{ route('peminjaman.edit', ':id') }}".replace(':id', row.id);
+                            let detailPengembalianRoute = "{{ route('pengembalian.show', ':id') }}".replace(':id', row.id_pengembalian);                            
 
                             let editButton = (!data.dikembalikan) ? `
                                 <a href="${editRoute}" class="btn btn-sm btn-light-primary" title="Edit">
@@ -126,7 +127,7 @@
                             ` : '';
 
                             let pengembalianButton = (!!data.dikembalikan) ? `
-                                <a href="${editRoute}" class="btn btn-sm btn-light-success" title="Detail Pengembalian">
+                                <a href="${detailPengembalianRoute}" class="btn btn-sm btn-light-success" title="Detail Pengembalian">
                                     <i class="fa fa-edit"></i> Detail Pengembalian
                                 </a>
                             ` : '';
