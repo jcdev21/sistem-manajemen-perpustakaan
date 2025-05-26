@@ -18,37 +18,38 @@
                     </div>
                 </div>
                 <div class="card-body py-4">
-                    <form class="form" action="{{ route('buku.store') }}" method="POST">
+                    <form class="form" action="{{ route('buku.update', $buku->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                                 <span class="required">Judul</span>
                             </label>
-                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Judul" name="judul" value="{{ old('judul') }}" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Judul" name="judul" value="{{ old('judul', $buku->judul) }}" />
                         </div>
                         <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                                 <span>Penulis</span>
                             </label>
-                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Penulis" name="penulis" value="{{ old('penulis') }}" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Penulis" name="penulis" value="{{ old('penulis', $buku->penulis) }}" />
                         </div>
                         <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                                 <span>Penerbit</span>
                             </label>
-                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Penerbit" name="penerbit" value="{{ old('penerbit') }}" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Penerbit" name="penerbit" value="{{ old('penerbit', $buku->penerbit) }}" />
                         </div>
                         <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                                 <span>Tahun Terbit</span>
                             </label>
-                            <input type="number" class="form-control form-control-solid" placeholder="Masukkan Tahun Terbit" name="tahun_terbit" value="{{ old('tahun_terbit') }}" min="1900" max="2100" />
+                            <input type="number" class="form-control form-control-solid" placeholder="Masukkan Tahun Terbit" name="tahun_terbit" value="{{ old('tahun_terbit', $buku->tahun_terbit) }}" min="1900" max="2100" />
                         </div>
                         <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
                                 <span class="required">Stok</span>
                             </label>
-                            <input type="number" class="form-control form-control-solid" placeholder="Masukkan Stok" name="stok" value="{{ old('stok') }}" min="0" />
+                            <input type="number" class="form-control form-control-solid" placeholder="Masukkan Stok" name="stok" value="{{ old('stok', $buku->stok) }}" min="0" />
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-sm btn-primary">

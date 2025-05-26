@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateBukuRequest;
+use App\Http\Requests\UpdateBukuRequest;
 use App\Models\Buku;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -61,24 +62,34 @@ class BukuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Buku $buku)
     {
-        //
+        return view('pages.buku.edit', compact('buku'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateBukuRequest $request, Buku $buku)
     {
-        //
+        try {
+            $buku->update($request->validated());
+            return redirect()->route('buku.index')->with('success', 'Buku berhasil diperbarui.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal memperbarui data buku: ' . $e->getMessage());
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Buku $buku)
     {
-        //
+        try {
+            $buku->delete();
+            return redirect()->route('buku.index')->with('success', 'Buku berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal menghapus data buku: ' . $e->getMessage());
+        }
     }
 }

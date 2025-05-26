@@ -115,11 +115,19 @@
                         className: 'text-end',
                         render: function (data, type, row) {
                             let editRoute = "{{ route('buku.edit', ':id') }}".replace(':id', row.id);
+                            let deleteRoute = "{{ route('buku.destroy', ':id') }}".replace(':id', row.id);
 
                             return `
                                 <a href="${editRoute}" class="btn btn-sm btn-light-primary" title="Edit">
                                     <i class="fa fa-edit"></i> Edit
                                 </a>
+                                <form action="${deleteRoute}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-light-danger" title="Delete" onclick="return confirm('Yakin akan menghapus data buku ini?');">
+                                        <i class="fa fa-trash"></i> Hapus
+                                    </button>
+                                </form>
                             `;
                         },
                     },
