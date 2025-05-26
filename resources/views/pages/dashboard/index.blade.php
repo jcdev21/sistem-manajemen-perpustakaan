@@ -13,7 +13,7 @@
         <div id="kt_app_content_container" class="app-container container-xxl">
             <div class="card">
                 <div class="card-body">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quaerat repellat, necessitatibus architecto dolorem voluptatum iure perferendis maiores perspiciatis sit corporis amet esse natus. Quidem nulla qui suscipit mollitia perspiciatis voluptatum!</p>
+                    <h1>JOBHUN - SISTEM MANAJEMEN PERPUSTAKAAN</h1>
                 </div>
             </div>
         </div>

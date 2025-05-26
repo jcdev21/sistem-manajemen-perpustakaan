@@ -61,7 +61,7 @@
                         <span class="menu-title">Buku</span>
                     </a>
                 </div>
-                {{-- <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{Route::is('user') || Route::is('user.clientside') ? 'here show' : ''}}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{Route::is('peminjaman.*') || Route::is('pengembalian.*') ? 'here show' : ''}}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -73,22 +73,32 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">User</span>
+                        <span class="menu-title">Transaksi</span>
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
                             <div class="menu-item">
-                                <a class="menu-link {{Route::is('user') ? 'active' : ''}}" href="{{ route('user') }}">
+                                <a class="menu-link {{Route::is('peminjaman.*') ? 'active' : ''}}" href="{{ route('peminjaman.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">List Server Side</span>
+                                    <span class="menu-title">Peminjaman</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item">
+                                <a class="menu-link {{Route::is('pengembalian.*') ? 'active' : ''}}" href="{{ route('pengembalian.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Pengembalian</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 <!--end::Menu-->
             </div>
             <!--end::Menu wrapper-->

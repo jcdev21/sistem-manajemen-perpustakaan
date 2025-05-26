@@ -12,4 +12,21 @@ class Peminjaman extends Model
     protected $table = 'peminjaman';
 
     protected $guarded = [];
+
+    public $timestamps = false;
+
+    public function buku()
+    {
+        return $this->belongsTo(Buku::class, 'id_buku');
+    }
+
+    public function pengguna()
+    {
+        return $this->belongsTo(User::class, 'id_pengguna');
+    }
+
+    public function pengembalian()
+    {
+        return $this->hasOne(Pengembalian::class, 'id_peminjaman');
+    }
 }

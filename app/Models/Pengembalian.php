@@ -12,4 +12,11 @@ class Pengembalian extends Model
     protected $table = 'pengembalian';
 
     protected $guarded = [];
+
+    public $timestamps = false;
+
+    public function peminjaman()
+    {
+        return $this->belongsTo(Peminjaman::class, 'id_peminjaman', 'id');
+    }
 }
