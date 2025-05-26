@@ -41,7 +41,7 @@
                             <label class="mb-2 d-flex align-items-center fs-6 fw-semibold">
                                 <span class="required">Peminjaman</span>
                             </label>
-                            <select id="select-peminjaman" name="peminjaman" class="form-control form-control-solid form-select" required>
+                            <select id="select-peminjaman" name="peminjaman" class="form-control form-control-solid form-select">
                                 <option></option>
                                 @foreach ($peminjaman_list as $peminjaman)
                                     <option value="{{ $peminjaman->id }}">{{ $peminjaman->buku->judul }} - Stok : {{ $peminjaman->pengguna->nama }} | {{ $peminjaman->pengguna->jenis_pengguna }}</option>
