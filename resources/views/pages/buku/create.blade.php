@@ -5,7 +5,7 @@
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
         <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Tambah Pengguna</h1>
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Tambah Buku</h1>
             </div>
         </div>
     </div>
@@ -14,39 +14,41 @@
             <div class="card">
                 <div class="card-header pt-2">
                     <div class="card-title">
-                        <h3>Form Tambah Pengguna</h3>
+                        <h3>Form Tambah Buku</h3>
                     </div>
                 </div>
                 <div class="card-body py-4">
-                    <form class="form" action="{{ route('pengguna.store') }}" method="POST">
+                    <form class="form" action="{{ route('buku.store') }}" method="POST">
                         @csrf
                         <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Nama</span>
+                                <span class="required">Judul</span>
                             </label>
-                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Nama" name="nama" value="{{ old('nama') }}" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Judul" name="judul" value="{{ old('judul') }}" />
                         </div>
                         <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span class="required">Jenis Pengguna</span>
+                                <span>Penulis</span>
                             </label>
-                            <select name="jenis_pengguna" class="form-select form-select-solid" data-control="select2" data-placeholder="Pilih Jenis">
-                                <option value="">Pilih Jenis Pengguna</option>
-                                <option value="dosen" {{ old('jenis_pengguna') == 'dosen' ? 'selected' : '' }}>Dosen</option>
-                                <option value="siswa" {{ old('jenis_pengguna') == 'siswa' ? 'selected' : '' }}>Siswa</option>
-                            </select>
+                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Penulis" name="penulis" value="{{ old('penulis') }}" />
                         </div>
                         <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span>No Telepon</span>
+                                <span>Penerbit</span>
                             </label>
-                            <input type="number" class="form-control form-control-solid" placeholder="Masukkan No Telepon" name="no_telepon" value="{{ old('no_telepon') }}" />
+                            <input type="text" class="form-control form-control-solid" placeholder="Masukkan Penerbit" name="penerbit" value="{{ old('penerbit') }}" />
                         </div>
                         <div class="d-flex flex-column mb-8 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
-                                <span>Alamat</span>
+                                <span>Tahun Terbit</span>
                             </label>
-                            <textarea class="form-control form-control-solid" placeholder="Masukkan Alamat" name="alamat" rows="4">{{ old('alamat') }}</textarea>
+                            <input type="number" class="form-control form-control-solid" placeholder="Masukkan Tahun Terbit" name="tahun_terbit" value="{{ old('tahun_terbit') }}" min="1900" max="2100" />
+                        </div>
+                        <div class="d-flex flex-column mb-8 fv-row">
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span>Stok</span>
+                            </label>
+                            <input type="number" class="form-control form-control-solid" placeholder="Masukkan Stok" name="stok" value="{{ old('stok') }}" min="0" />
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-sm btn-primary">

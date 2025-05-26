@@ -17,6 +17,8 @@ return new class extends Migration
             $table->enum('jenis_pengguna', ['siswa', 'dosen']);
             $table->string('alamat')->nullable();
             $table->string('no_telepon', 20)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

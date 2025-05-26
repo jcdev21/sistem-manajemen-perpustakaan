@@ -9,7 +9,7 @@
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
         <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Pengguna</h1>
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Buku</h1>
             </div>
         </div>
     </div>
@@ -33,8 +33,8 @@
                     <div class="card-toolbar">
                         <div class="d-flex align-items-center gap-2 gap-lg-3">
                             {{-- <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#modal-form">Add</a> --}}
-                            <a id="add-user" href="{{ route('pengguna.create') }}" class="btn fw-bold btn-sm btn-primary">
-                                <i class="fa fa-plus"></i> Tambah Pengguna
+                            <a id="add-user" href="{{ route('buku.create') }}" class="btn fw-bold btn-sm btn-primary">
+                                <i class="fa fa-plus"></i> Tambah Buku
                             </a>
                         </div>
                     </div>
@@ -45,10 +45,12 @@
                         <thead>
                             <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                                 <th class="w-50px">#</th>
-                                <th>Nama</th>
-                                <th>jenis</th>
-                                <th>No. Telp</th>
-                                <th>Alamat</th>
+                                <th>Judul</th>
+                                <th>Penulis</th>
+                                <th>Penerbit</th>
+                                <th>Tahun Terbit</th>
+                                <th>Stok</th>
+                                <th class="text-end min-w-100px"></th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-600 fw-semibold">
@@ -73,7 +75,7 @@
                 searchDelay: 500,
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('pengguna.index') }}",
+                ajax: "{{ route('buku.index') }}",
                 columns: [
                     {
                         data: 'DT_RowIndex',
@@ -82,22 +84,46 @@
                         searchable: false
                     },
                     {
-                        data: 'nama',
-                        name: 'nama'
+                        data: 'judul',
+                        name: 'judul'
                     },
                     {
-                        data: 'jenis_pengguna',
-                        name: 'jenis_pengguna'
+                        data: 'penulis',
+                        name: 'penulis'
                     },
                     {
-                        data: 'no_telepon',
-                        name: 'no_telepon'
+                        data: 'penerbit',
+                        name: 'penerbit'
                     },
                     {
-                        data: 'alamat',
-                        name: 'alamat'
+                        data: 'tahun_terbit',
+                        name: 'tahun_terbit'
                     },
+                    {
+                        data: 'stok',
+                        name: 'stok'
+                    },
+                    {
+                        data: null,
+                    }
                 ],
+                columnDefs: [
+                    {
+                        targets: -1,
+                        data: null,
+                        orderable: false,
+                        className: 'text-end',
+                        render: function (data, type, row) {
+                            let editRoute = "{{ route('buku.edit', ':id') }}".replace(':id', row.id);
+
+                            return `
+                                <a href="${editRoute}" class="btn btn-sm btn-light-primary" title="Edit">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                            `;
+                        },
+                    },
+                ]
             });
             table.on("draw", function () {
                 KTMenu.createInstances();

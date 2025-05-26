@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\Dashboard;
-use App\Http\Controllers\User;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Dashboard::class, 'index'])->name('dashboard');
 
-Route::controller(User::class)->prefix('pengguna')->group(function () {
-    Route::get('/', [User::class, 'index'])->name('pengguna.index');
-    Route::get('/create', [User::class, 'create'])->name('pengguna.create');
-    Route::post('/store', [User::class, 'store'])->name('pengguna.store');
+Route::controller(UserController::class)->prefix('pengguna')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('pengguna.index');
+    Route::get('/create', [UserController::class, 'create'])->name('pengguna.create');
+    Route::post('/store', [UserController::class, 'store'])->name('pengguna.store');
 });
+
+Route::resource('buku', BukuController::class);
